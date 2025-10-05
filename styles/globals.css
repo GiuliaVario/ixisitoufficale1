@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== Design tokens (CSS vars) ===== */
+:root {
+  --background: #121212;
+  --foreground: #fbfbfb;
+
+  /* Brand */
+  --brand-bg: #121212;
+  --brand-fg: #fbfbfb;
+  --brand-primary: #ff582b;   /* opzionale */
+  --brand-accent-1: #bcf01f;  /* lime */
+  --brand-accent-2: #9a48ff;  /* viola */
+
+  /* Font (iniettati da next/font nel layout) */
+  --font-body: var(--font-raleway);
+  /* nel progetto la var è --font-clash */
+  --font-title: var(--font-clash);
+
+  color-scheme: dark;
+}
+
+/* ===== Base ===== */
+@layer base {
+  html, body {
+    padding: 0;
+    margin: 0;
+    /* 👇 elimina il “gutter” a destra su sezioni full-bleed */
+    overflow-x: clip;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+
+  a { color: inherit; text-decoration: none; }
+
+  body {
+    background: var(--brand-bg);
+    color: var(--brand-fg);
+    font-family: var(--font-body, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial);
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .text-balance { text-wrap: balance; }
+
+  ::selection {
+    background: color-mix(in oklab, var(--brand-accent-1) 35%, transparent);
+    color: var(--brand-fg);
+  }
+
+  * { -webkit-tap-highlight-color: transparent; }
+}
+
+/* ===== Utilities generali ===== */
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+
+@media (hover: none) {
+  .touchable:active {
+    background-color: rgba(154, 72, 255, 0.08);
+    color: var(--brand-accent-2);
+  }
+}
+
+/* Facoltativa: wrapper full-bleed pronto all’uso */
+.full-bleed {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+  max-width: 100vw;   /* evita overflow per sub-pixel */
+  overflow-x: clip;   /* sicurezza extra */
+}
+
+/* ===== Utilities HERO / titolazioni ===== */
+@layer utilities {
+  .impact {
+    font-family: var(--font-title);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: 0;
+    word-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .impact-tight { word-spacing: 0.10em; letter-spacing: -0.002em; }
+  .impact-outline {
+    color: transparent;
+    -webkit-text-stroke: 2px currentColor;
+    text-stroke: 2px currentColor;
+  }
+}

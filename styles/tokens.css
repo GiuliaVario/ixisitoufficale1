@@ -1,0 +1,9 @@
+:root {
+  --brand-purple: #9A48FF;
+  --brand-lime: #BCF01F;
+  --brand-orange: #FF582B;
+  --neutral-black: #121212;
+  --neutral-white: #FBFBFB;
+  --color-bg: var(--neutral-white);
+  --color-fg: var(--neutral-black);
+}
